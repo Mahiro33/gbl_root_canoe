@@ -25,16 +25,6 @@ jobs:
             uuid-dev \
             xxd zip
 
-      - name: Upload abl.img (must be pre-placed in repo or via secret)
-        # 如果 abl.img 已经提交到仓库，此步骤可跳过
-        # 否则需要通过 GitHub Secrets 或 release asset 获取
-        run: |
-          if [ ! -f images/abl.img ]; then
-            echo "ERROR: images/abl.img not found!"
-            echo "Please commit abl.img to the images/ folder, or adjust this step."
-            exit 1
-          fi
-
       - name: Build (patch + compile)
         run: make build
 
